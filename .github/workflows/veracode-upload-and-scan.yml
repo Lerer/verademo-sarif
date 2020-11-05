@@ -24,8 +24,10 @@ jobs:
         filepath: 'target/'
         vid: '${{ secrets.VERACODE_API_ID }}'
         vkey: '${{ secrets.VERACODE_API_KEY }}'
-        createsandbox: 'false'
+        createsandbox: false
         sandboxname: 'github-upload-and-scan-master'
         scantimeout: 15
         exclude: '*.js'
         include: '*.war'
+        appname: 'GitHub Verademo'
+        createprofile: false
