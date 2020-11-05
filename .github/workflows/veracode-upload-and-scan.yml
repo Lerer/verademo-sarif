@@ -27,7 +27,7 @@ jobs:
         createsandbox: false
         sandboxname: 'github-upload-and-scan-master'
         scantimeout: 15
-        exclude: '*.js'
-        include: '*.war'
+        exclude: '*.js,*.jar,*.class,*.png,*.jpg,*.gif'
+        include: 'verademo.war'
         appname: 'GitHub Verademo'
         createprofile: false
