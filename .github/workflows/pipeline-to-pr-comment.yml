@@ -31,11 +31,11 @@ jobs:
       run: java -jar pipeline-scan.jar --veracode_api_id "${{secrets.VERACODE_API_ID}}" --veracode_api_key "${{secrets.VERACODE_API_KEY}}" -so true --file "./target/verademo.war" --fail_on_severity="Very High, High"
     - id: get-comment-body
       run: |
-        ls -l
+        #ls -l
         body=$(cat results.txt)
-        body="${body//'%'/'%25'}"
-        body="${body//$'\n'/'%0A'}"
-        body="${body//$'\r'/'%0D'}" 
+        #body="${body//'%'/'%25'}"
+        #body="${body//$'\n'/'%0A'}"
+        #body="${body//$'\r'/'%0D'}" 
         echo ::set-output name=body::$body
     - uses: actions/github-script@v3
       with:
