@@ -26,5 +26,8 @@ jobs:
     - name: Unzip the Pipeline Scanner
       run: unzip pipeline-scan-LATEST.zip
     - name: Run Pipeline Scanner
+      id: pipeline-scan
       continue-on-error: true
       run: java -jar pipeline-scan.jar --veracode_api_id "${{secrets.VERACODE_API_ID}}" --veracode_api_key "${{secrets.VERACODE_API_KEY}}" --file "./target/verademo.war" --fail_on_severity="Very High, High"
+    - name: Get result
+      run: echo "${{steps.pipeline-scan.outputs.result}}"
