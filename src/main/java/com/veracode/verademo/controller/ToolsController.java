@@ -91,6 +91,15 @@ public class ToolsController {
 				proc = Runtime.getRuntime().exec(cmd);
 			}
 			/* END BAD CODE */
+			
+			/* ANOTHER BAD CODE */
+			if (System.getProperty("os.name").startsWith("Windows")) {
+				proc = Runtime.getRuntime().exec(new String[] { "cmd.exe", "/c", cmd });
+			}
+			else {
+				proc = Runtime.getRuntime().exec(cmd);
+			}
+			/* END ANOTHER BAD CODE */
 
 			InputStreamReader isr = new InputStreamReader(proc.getInputStream());
 			BufferedReader br = new BufferedReader(isr);
