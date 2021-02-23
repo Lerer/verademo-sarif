@@ -33,10 +33,10 @@ jobs:
       run: |
         #ls -l
         body=$(cat results.txt)
-        #body="${body//'%'/'%25'}"
-        #body="${body//$'\n'/'%0A'}"
-        #body="${body//$'\r'/'%0D'}" 
-        echo ::set-output name=body::$body
+        body="${body//'%'/'%25'}"
+        body="${body//$'\n'/'%0A'}"
+        body="${body//$'\r'/'%0D'}" 
+        echo "::set-output name=body1::$body"
     - uses: actions/github-script@v3
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
@@ -45,5 +45,5 @@ jobs:
             issue_number: context.issue.number,
             owner: context.repo.owner,
             repo: context.repo.repo,
-            body: "${{ steps.get-comment-body.outputs.body }}"
+            body: "${{ steps.get-comment-body.outputs.body1 }}"
           })
