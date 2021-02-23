@@ -29,20 +29,10 @@ jobs:
       id: pipeline-scan
       continue-on-error: true
       run: java -jar pipeline-scan.jar --veracode_api_id "${{secrets.VERACODE_API_ID}}" --veracode_api_key "${{secrets.VERACODE_API_KEY}}" -so true --file "./target/verademo.war" --fail_on_severity="Very High, High"
-#     - name: comment PR
-#       uses: machine-learning-apps/pr-comment@master
-#       env:
-#         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#       with:
-#         path: results.txt
     - id: get-comment-body
       run: |
-        #ls -l
         body=$(cat results.txt)
-        #body="${body//'%'/'%25'}"
-        #body="${body//$'\n'/'%0A'}"
         body="${body//$'\n'/'<br>'}"
-        #body="${body//$'\r'/'%0D'}" 
         echo "::set-output name=body1::$body"
     - uses: actions/github-script@v3
       with:
