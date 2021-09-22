@@ -33,10 +33,8 @@ jobs:
       if: ${{ github.head_ref != '' }}
       run: |
         body=$(cat results.txt)
-        body="${body//$'====================\n--------------------------'/'====================<details>'}"
-        body="${body//$'--------------------------\nF'/'</details><details><summary>F'}"
-        body="${body//$'.\n--------------------------'/'.</summary>'}"                             
-        body="${body//$'==========================\nFA'/'</details>==========================<br>FA'}"
+        body="${body//$'===\n---'/'===\n<details><summary>details</summary><p>\n---'}"
+        body="${body//$'---\n\n==='/'---\n</p></details>\n==='}"
         body="${body//$'\n'/'<br>'}"
         echo "::set-output name=body1::$body"
     - uses: actions/github-script@v3
